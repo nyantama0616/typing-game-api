@@ -17,7 +17,11 @@ class WordsController < ApplicationController
         CSV.foreach(path, encoding: "utf-8", headers: true) do |row|
             words.push [row[0], row[1]] #TODO: 絶対もっと良い書き方ある
         end
-        words
+
+        words.shuffle! if params[:shuffle] == "true"
+        
+        n = params[:limit] ? [params[:limit].to_i, words.length].min : words.length
+        words.first(n)
     end
     
     def get_kana_alphabet
