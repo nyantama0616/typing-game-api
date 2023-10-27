@@ -15,4 +15,3 @@ RUN gem install bundler
 RUN bundle install --jobs 4
 
 EXPOSE 3000 3306
-CMD ["bundle", "exec", "rails", "db:create"]
