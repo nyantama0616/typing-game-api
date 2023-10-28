@@ -21,7 +21,7 @@ class WordsController < ApplicationController
         words.shuffle! if params[:shuffle] == "true"
         
         n = params[:limit] ? [params[:limit].to_i, words.length].min : words.length
-        words.first(n)
+        words.first(n).select {|a| !(a[1] =~ /[?!？！]/)}
     end
     
     def get_kana_alphabet
